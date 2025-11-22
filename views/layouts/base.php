@@ -30,6 +30,10 @@
                     <i class="fas fa-plus-circle mr-3"></i>
                     <span>Thêm Sản Phẩm</span>
                 </a>
+                <a href="index.php?page=categories" class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white <?php echo ($page ?? '') == 'categories' || ($page ?? '') == 'category-form' ? 'bg-gray-700 text-white' : ''; ?>">
+                    <i class="fas fa-folder-tree mr-3"></i>
+                    <span>Quản Lý Danh Mục</span>
+                </a>
                 <hr class="my-4 border-gray-700">
                 <a href="index.php?page=login" class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
                     <i class="fas fa-sign-in-alt mr-3"></i>

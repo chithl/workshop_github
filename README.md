@@ -7,6 +7,11 @@ Template quản lý quán cà phê được xây dựng bằng Tailwind CSS theo
 - ✅ Dashboard với biểu đồ thống kê (Chart.js)
 - ✅ Trang danh sách sản phẩm dạng bảng
 - ✅ Trang form thêm/sửa sản phẩm
+- ✅ **Quản lý danh mục sản phẩm** (Mới!)
+  - Hiển thị danh mục dạng tree (phân cấp cha-con)
+  - Tìm kiếm, filter theo trạng thái
+  - Form thêm/sửa danh mục với validation
+  - Chọn danh mục cha hierarchical
 - ✅ Trang đăng nhập
 - ✅ Trang đăng ký
 - ✅ Responsive design với Tailwind CSS
@@ -21,6 +26,7 @@ workshop_github/
 ├── controllers/              # Controllers (MVC)
 │   ├── DashboardController.php
 │   ├── ProductController.php
+│   ├── CategoryController.php  # NEW
 │   └── AuthController.php
 ├── models/                   # Models (để tích hợp với database)
 ├── views/                    # Views
@@ -32,9 +38,15 @@ workshop_github/
 │   ├── products/             # Product views
 │   │   ├── index.php         # List view
 │   │   └── form.php          # Add/Edit form
+│   ├── categories/           # Category views (NEW)
+│   │   ├── index.php         # List view with tree structure
+│   │   └── form.php          # Add/Edit form
 │   └── auth/                 # Authentication views
 │       ├── login.php
 │       └── register.php
+├── docs/                     # Documentation (NEW)
+│   ├── CATEGORY_API.md       # API documentation
+│   └── CATEGORY_INTEGRATION_GUIDE.md  # Integration guide
 └── public/                   # Public assets
     ├── css/
     ├── js/
@@ -54,6 +66,8 @@ workshop_github/
 - **Dashboard**: `index.php?page=dashboard` (hoặc chỉ `index.php`)
 - **Danh sách sản phẩm**: `index.php?page=products`
 - **Thêm sản phẩm**: `index.php?page=product-form`
+- **Quản lý danh mục**: `index.php?page=categories` **(Mới!)**
+- **Thêm/Sửa danh mục**: `index.php?page=category-form` **(Mới!)**
 - **Đăng nhập**: `index.php?page=login`
 - **Đăng ký**: `index.php?page=register`
 
@@ -86,6 +100,11 @@ Màu mặc định là `indigo`. Để thay đổi, tìm và thay thế các cla
 1. Tạo file `config/database.php` để cấu hình kết nối
 2. Tạo models trong thư mục `models/` để xử lý dữ liệu
 3. Cập nhật controllers để sử dụng models thay vì dữ liệu mẫu
+
+## Tài liệu
+
+- [API Documentation - Category Management](docs/CATEGORY_API.md)
+- [Integration Guide - Category Management](docs/CATEGORY_INTEGRATION_GUIDE.md)
 
 ## License
 

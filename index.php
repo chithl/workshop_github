@@ -28,6 +28,18 @@ switch ($page) {
         $controller->form();
         break;
     
+    case 'categories':
+        require_once 'controllers/CategoryController.php';
+        $controller = new CategoryController();
+        $controller->index();
+        break;
+    
+    case 'category-form':
+        require_once 'controllers/CategoryController.php';
+        $controller = new CategoryController();
+        $controller->form();
+        break;
+    
     case 'login':
         require_once 'controllers/AuthController.php';
         $controller = new AuthController();
