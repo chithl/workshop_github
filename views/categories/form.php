@@ -1,3 +1,10 @@
+<!-- 
+    TEMPLATE MODE: This form uses simulated submission and validation.
+    For production implementation with real API integration, see:
+    - docs/CATEGORY_API.md for API specification
+    - docs/CATEGORY_INTEGRATION_GUIDE.md for integration instructions
+-->
+
 <div class="max-w-4xl mx-auto">
     <div class="bg-white rounded-lg shadow-md p-6">
         <form action="#" method="POST" id="categoryForm" onsubmit="return validateForm(event)">
@@ -240,7 +247,8 @@ function displayErrors(errors) {
     errorMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// Submit form (in real app, this would make an API call)
+// Submit form
+// NOTE: This is template code with simulated API call. For production, see docs/CATEGORY_INTEGRATION_GUIDE.md
 function submitForm() {
     const form = document.getElementById('categoryForm');
     const formData = new FormData(form);
@@ -251,30 +259,50 @@ function submitForm() {
     submitButton.disabled = true;
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang lưu...';
     
-    // Simulate API call
+    // DEMO MODE: Simulate API call with setTimeout
+    // For production implementation, replace this with actual API call
     setTimeout(() => {
-        // In real app, this would be:
-        // fetch('/api/categories', {
-        //     method: 'POST',
-        //     body: formData
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     if (data.success) {
-        //         showSuccess();
-        //         setTimeout(() => {
-        //             window.location.href = 'index.php?page=categories';
-        //         }, 1500);
-        //     } else {
-        //         displayErrors(data.errors);
-        //     }
-        // });
+        // Production implementation (uncomment and configure):
+        /*
+        const id = formData.get('id');
+        const url = id ? '/api/categories/' + id : '/api/categories';
+        const method = id ? 'PUT' : 'POST';
         
+        // Convert FormData to JSON
+        const data = {};
+        formData.forEach((value, key) => { data[key] = value; });
+        
+        fetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showSuccess();
+                setTimeout(() => {
+                    window.location.href = 'index.php?page=categories';
+                }, 1500);
+            } else {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+                displayErrors(data.errors || ['Có lỗi xảy ra']);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+            displayErrors(['Có lỗi xảy ra khi lưu danh mục']);
+        });
+        */
+        
+        // DEMO: Show success and redirect
         showSuccess();
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
         
-        // Redirect after 1.5 seconds
         setTimeout(() => {
             window.location.href = 'index.php?page=categories';
         }, 1500);

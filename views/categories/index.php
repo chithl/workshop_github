@@ -1,3 +1,10 @@
+<!-- 
+    TEMPLATE MODE: This page uses sample data and simulated functionality.
+    For production implementation with real API integration, see:
+    - docs/CATEGORY_API.md for API specification
+    - docs/CATEGORY_INTEGRATION_GUIDE.md for integration instructions
+-->
+
 <!-- Actions Bar -->
 <div class="bg-white rounded-lg shadow-md p-4 mb-6">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0">
@@ -224,11 +231,11 @@ function filterByStatus() {
     updatePaginationInfo(visibleCount);
 }
 
-// Sort categories (note: this is a simple sort that may break tree structure)
-// For production, implement tree-aware sorting that maintains hierarchy
+// Sort categories
+// NOTE: This is template code. In production, implement tree-aware sorting that maintains hierarchy
 let sortOrder = 'asc';
 function sortCategories() {
-    alert('Chức năng sắp xếp đang được phát triển. Vui lòng sử dụng tìm kiếm hoặc filter để tìm danh mục.');
+    alert('🚧 DEMO MODE: Chức năng sắp xếp đang được phát triển.\n\nĐể triển khai, vui lòng xem docs/CATEGORY_INTEGRATION_GUIDE.md');
     // TODO: Implement tree-aware sorting that maintains parent-child relationships
     // For now, we disable this to prevent breaking the tree structure
     return;
@@ -254,17 +261,26 @@ function sortCategories() {
 }
 
 // Delete category
+// NOTE: This is template code. For production implementation, see docs/CATEGORY_INTEGRATION_GUIDE.md
 function deleteCategory(id) {
     if (confirm('Bạn có chắc chắn muốn xóa danh mục này?')) {
-        // In real app, this would make an API call
-        alert('Xóa danh mục ID: ' + id);
-        // Example API call:
+        // DEMO MODE: Show alert instead of actual deletion
+        alert('🚧 DEMO MODE: Xóa danh mục ID: ' + id + '\n\nĐể kết nối API thực tế, xem docs/CATEGORY_INTEGRATION_GUIDE.md');
+        
+        // Production implementation:
         // fetch('/api/categories/' + id, { method: 'DELETE' })
         //     .then(response => response.json())
         //     .then(data => {
         //         if (data.success) {
+        //             alert('Xóa danh mục thành công!');
         //             window.location.reload();
+        //         } else {
+        //             alert('Lỗi: ' + (data.message || 'Không thể xóa danh mục'));
         //         }
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //         alert('Có lỗi xảy ra khi xóa danh mục');
         //     });
     }
 }
