@@ -40,9 +40,16 @@
                         <?php
                         // Function to build category tree for dropdown
                         function buildCategoryOptions($categories, $selectedId = null, $excludeId = null, $parentId = null, $level = 0) {
+                            // Get all descendants to exclude
+                            $excludeIds = [];
+                            if ($excludeId) {
+                                $excludeIds = getDescendantIds($categories, $excludeId);
+                                $excludeIds[] = $excludeId;
+                            }
+                            
                             foreach ($categories as $cat) {
                                 // Skip the category being edited and its descendants
-                                if ($excludeId && $cat['id'] == $excludeId) {
+                                if (in_array($cat['id'], $excludeIds)) {
                                     continue;
                                 }
                                 
@@ -58,6 +65,19 @@
                                     buildCategoryOptions($categories, $selectedId, $excludeId, $cat['id'], $level + 1);
                                 }
                             }
+                        }
+                        
+                        // Helper function to get all descendant IDs
+                        function getDescendantIds($categories, $parentId) {
+                            $descendants = [];
+                            foreach ($categories as $cat) {
+                                if ($cat['parent_id'] == $parentId) {
+                                    $descendants[] = $cat['id'];
+                                    // Recursively get descendants
+                                    $descendants = array_merge($descendants, getDescendantIds($categories, $cat['id']));
+                                }
+                            }
+                            return $descendants;
                         }
                         
                         // Display parent category options (excluding current category if editing)
@@ -297,7 +317,7 @@ const currentCategoryId = <?php echo $category['id']; ?>;
 const parentSelect = document.getElementById('parent_id');
 
 parentSelect.addEventListener('change', function() {
-    if (this.value == currentCategoryId) {
+    if (parseInt(this.value) === currentCategoryId) {
         alert('Không thể chọn chính danh mục này làm danh mục cha!');
         this.value = '<?php echo $category['parent_id'] ?? ''; ?>';
     }

@@ -7,8 +7,10 @@ Tài liệu này mô tả các API endpoints để quản lý danh mục sản p
 ## Base URL
 
 ```
-http://localhost/workshop_github/api/categories
+{BASE_URL}/api/categories
 ```
+
+Replace `{BASE_URL}` with your application's base URL (e.g., `http://localhost/workshop_github` or `https://yourdomain.com`).
 
 ## Endpoints
 

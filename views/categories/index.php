@@ -58,7 +58,9 @@
                     foreach ($categories as $category) {
                         if ($category['parent_id'] == $parentId) {
                             $indent = str_repeat('—', $level);
-                            $indentClass = $level > 0 ? 'pl-' . ($level * 4) : '';
+                            // Use predefined Tailwind classes for indentation
+                            $indentClasses = ['', 'pl-4', 'pl-8', 'pl-12', 'pl-16'];
+                            $indentClass = $level < count($indentClasses) ? $indentClasses[$level] : 'pl-16';
                             ?>
                             <tr class="hover:bg-gray-50 category-row" 
                                 data-status="<?php echo $category['status']; ?>" 
@@ -222,9 +224,16 @@ function filterByStatus() {
     updatePaginationInfo(visibleCount);
 }
 
-// Sort categories
+// Sort categories (note: this is a simple sort that may break tree structure)
+// For production, implement tree-aware sorting that maintains hierarchy
 let sortOrder = 'asc';
 function sortCategories() {
+    alert('Chức năng sắp xếp đang được phát triển. Vui lòng sử dụng tìm kiếm hoặc filter để tìm danh mục.');
+    // TODO: Implement tree-aware sorting that maintains parent-child relationships
+    // For now, we disable this to prevent breaking the tree structure
+    return;
+    
+    /* Original sorting code - disabled to preserve tree structure
     const tbody = document.getElementById('categoryTableBody');
     const rows = Array.from(tbody.querySelectorAll('.category-row'));
     
@@ -241,6 +250,7 @@ function sortCategories() {
     
     rows.forEach(row => tbody.appendChild(row));
     sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    */
 }
 
 // Delete category
